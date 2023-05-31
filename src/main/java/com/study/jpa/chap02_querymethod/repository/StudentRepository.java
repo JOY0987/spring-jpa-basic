@@ -30,7 +30,7 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     //       WHERE st.name = ?
 
     // 도시 이름으로 학생 조회
-//    @Query(value = "SELECT * FROM tbl_student WEHRE city = ?1", nativeQuery = true)
+//    @Query(value = "SELECT * FROM tbl_student WHERE city = ?1", nativeQuery = true)
     @Query("SELECT s FROM Student s WHERE s.city = ?1")
     Student getByCityWithJPQL(String city);
 
