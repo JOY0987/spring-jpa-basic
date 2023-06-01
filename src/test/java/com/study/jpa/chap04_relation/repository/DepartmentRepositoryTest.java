@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -76,7 +78,42 @@ class DepartmentRepositoryTest {
         System.out.println("\n\n\n");
         foundDept.getEmployees().forEach(System.out::println);
         System.out.println("\n\n\n");
-
         //then
     }
+
+    // 면접에서 많이 물어보는 문제!
+    @Test
+    @DisplayName("N+1 문제 발생 예시")
+    void testNPlus1() {
+        //given
+        List<Department> departments = departmentRepository.findAll();
+        //when
+        departments.forEach(dept -> {
+            System.out.println("\n\n======== 사원 리스트 =========");
+
+            List<Employee> employees = dept.getEmployees();
+            System.out.println("employees = " + employees);
+
+            System.out.println("\n\n");
+        });
+        //then
+    }
+
+    @Test
+    @DisplayName("N+1 문제 해결 예시")
+    void testNPlus1Solution() {
+        //given
+        List<Department> departments = departmentRepository.findAllIncludeEmployees();
+        //when
+        departments.forEach(dept -> {
+            System.out.println("\n\n======= 사원 리스트 =========");
+
+            List<Employee> employees = dept.getEmployees();
+            System.out.println("employees = " + employees);
+
+            System.out.println("\n\n");
+        });
+        //then
+    }
+
 }
