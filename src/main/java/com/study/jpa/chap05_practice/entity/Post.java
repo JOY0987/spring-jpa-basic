@@ -29,7 +29,9 @@ public class Post {
 
     @Column(nullable = false)
     private String writer; // 작성자
-    
+
+    private String title;
+
     private String content; // 내용
 
     @CreationTimestamp
@@ -40,5 +42,17 @@ public class Post {
     private LocalDateTime updateDate; // 수정시간
 
     @OneToMany(mappedBy = "post")
+    @Builder.Default
     private List<HashTag> hashTags = new ArrayList<>();
+
+    // 양방향 매핑에서 리스트 쪽에 데이터를 추가하는 편의 메서드 생성
+    // 자동으로 갱신이 되지 않음!!
+    public void addHashTag(HashTag hashTag) {
+        hashTags.add(hashTag);
+        // 해시태그 안에 들어있는 원본 게시물이 지금 이 게시물과 다르다면
+        // 그 해시태그에 지금 이 게시물을 저장해라
+        if (this != hashTag.getPost()) {
+            hashTag.setPost(this);
+        }
+    }
 }
