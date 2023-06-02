@@ -27,7 +27,7 @@ public class HashTag {
     private String tagName; // 해시태그 이름
 
     // 단방향 연관관계 매핑
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "post_no")
     private Post post;
 

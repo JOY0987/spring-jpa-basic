@@ -25,5 +25,6 @@ public class Department {
     private String name;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @Builder.Default
     private List<Employee> employees = new ArrayList<>();
 }
