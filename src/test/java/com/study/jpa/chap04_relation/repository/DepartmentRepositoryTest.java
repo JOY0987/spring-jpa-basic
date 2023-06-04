@@ -52,6 +52,7 @@ class DepartmentRepositoryTest {
         // LAZY : 필요한 경우에만 조인을 수행 (실무)
         System.out.println("\n\n\n");
         System.out.println("employee = " + employee);
+        // 이런 코드를 작성했을 때 조인을 수행한다!!
         System.out.println("employee.getDepartment() = " + employee.getDepartment());
         System.out.println("\n\n\n");
     }
@@ -91,6 +92,7 @@ class DepartmentRepositoryTest {
         departments.forEach(dept -> {
             System.out.println("\n\n======== 사원 리스트 =========");
 
+            // 하나의 부서에서 사원 정보를 다 꺼내보기
             List<Employee> employees = dept.getEmployees();
             System.out.println("employees = " + employees);
 
@@ -99,6 +101,9 @@ class DepartmentRepositoryTest {
         //then
     }
 
+    // N+1 문제 해결
+    // JPA + fetch LAZY 조인이 필요한 경우, 조인을 하지 않는다는 문제가 있다.
+    //
     @Test
     @DisplayName("N+1 문제 해결 예시")
     void testNPlus1Solution() {

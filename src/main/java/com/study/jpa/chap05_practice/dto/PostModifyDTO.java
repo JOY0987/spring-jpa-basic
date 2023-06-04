@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @Getter
 @ToString
 @EqualsAndHashCode
-@NoArgsConstructor(force = true) // NotNull 컬럼의 기본값 세팅
+@NoArgsConstructor(force = true) // NotNull 컬럼에 기본값 세팅
 @AllArgsConstructor
 @Builder
 public class PostModifyDTO {

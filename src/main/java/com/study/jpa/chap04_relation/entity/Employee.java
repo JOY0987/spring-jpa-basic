@@ -23,8 +23,10 @@ public class Employee {
     @Column(name = "emp_name", nullable = false)
     private String name;
     
-    // 간방향 연관 관계
+    // 단방향 연관 관계
     // 사원 M : 1 부서
+    // EAGER : 항상 무조건 조인을 수행
+    // LAZY : 필요한 경우에만 조인을 수행 (실무)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_id") // FK 명 지정
     private Department department;

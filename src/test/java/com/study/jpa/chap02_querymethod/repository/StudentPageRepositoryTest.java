@@ -50,8 +50,13 @@ class StudentPageRepositoryTest {
         PageRequest pageInfo = PageRequest.of(
                 pageNo - 1,
                 amount,
-                Sort.by(Sort.Order.desc("name"), Sort.Order.asc("city")).descending());
-                    // (정렬기준 Entity 필드명), 정렬 기준이 여러개일시 Sort.Order 사용
+                Sort.by(
+                        Sort.Order.desc("name"),
+                        Sort.Order.asc("city")
+                ).descending()
+        );
+                // 페이지 정렬이 필요한 경우 Sort 객체 사용
+                // (정렬기준은 Entity 필드명으로 작성), 정렬 기준이 여러개일시 소괄호 안에 Sort.Order 사용
 
         //when
         Page<Student> students = studentPageRepository.findAll(pageInfo);

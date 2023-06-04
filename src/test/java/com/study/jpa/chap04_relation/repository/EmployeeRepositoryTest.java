@@ -64,6 +64,7 @@ class EmployeeRepositoryTest {
         //given
         Long id = 2L;
         //when
+        // orElseThrow : null이 아닐 경우 Employee 객체를 리턴
         Employee employee = employeeRepository.findById(id).orElseThrow(() ->  new RuntimeException("사원이 없음"));
         //then
         System.out.println("\n\n\n");

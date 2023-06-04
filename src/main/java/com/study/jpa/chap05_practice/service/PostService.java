@@ -105,7 +105,7 @@ public class PostService {
 
     public PostDetailResponseDTO modify(final PostModifyDTO dto) {
         // 수정 전 데이터 조회
-        Post postEntity = getPost(dto.getPostNo());
+        final Post postEntity = getPost(dto.getPostNo());
         // setter 로 수정 시작
         postEntity.setTitle(dto.getTitle());
         postEntity.setContent(dto.getContent());

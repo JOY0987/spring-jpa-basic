@@ -28,7 +28,7 @@ public class PostApiController {
      게시물 목록 조회:  /posts       - GET
      게시물 개별 조회:  /posts/{id}  - GET
      게시물 등록:      /posts       - POST
-     게시물 수정:      /posts/{id}  - PATCH
+     게시물 수정:      /posts/{id}  - PUT, PATCH
      게시물 삭제:      /posts/{id}  - DELETE
  */
     private final PostService postService;
@@ -113,7 +113,7 @@ public class PostApiController {
             BindingResult result,
             HttpServletRequest request
     ) {
-        log.info("/api/v1/posts {}!! - dto: {}", request.getMethod(), dto);
+        log.info("/api/v1/posts {}!! - dto: {}", request.getMethod(), dto); // PUT 인지 PATCH 인지 확인 가능
 
         ResponseEntity<List<FieldError>> fieldErrors = getValidatedResult(result);
         if (fieldErrors != null) return fieldErrors;
